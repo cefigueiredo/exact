@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="toolbar">
+    <ul>
+      <% if session[:user_id] %>
+        <li><%= session[:user_email] %></li>
+        <li><%= link_to 'Sign out', session_path(session[:user_id]), method: :delete %>
+      <% else %>
+        <li><%= link_to 'Sign in', new_session_path %></li>
+      <% end %>
+    </ul>
+  </nav>
 
 <%= yield %>
 

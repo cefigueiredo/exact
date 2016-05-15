@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password
 
-  validates :email, email_format: true, length: { minimum: 8 }
+  validates :email, uniqueness: true, email_format: true, length: { minimum: 8 }
 
   def authenticate?(password)
     @password = password

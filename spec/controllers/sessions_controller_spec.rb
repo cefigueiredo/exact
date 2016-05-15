@@ -20,6 +20,13 @@ RSpec.describe SessionsController, type: :controller do
         post :create, { email: 'valid@email.com', password: '12345678' }
         expect(response).to redirect_to(User)
       end
+
+      it "sets user_id into session hash" do
+        user = User.create(email: 'valid@email.com')
+
+        post :create, { email: 'valid@email.com', password: '12345678' }
+        expect(session[:user_id]).to eq user.id
+      end
     end
 
     context "when login is invalid" do
@@ -30,10 +37,17 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "GET #destroy" do
-    skip "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
+  describe "DELETE #destroy" do
+    before { session[:user_id] = 1 }
+
+    it "returns http success" do
+      delete :destroy, id: 1
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "redirects to new" do
+      delete :destroy, id: 1
+      expect(response).to redirect_to(new_session_path)
     end
   end
 
