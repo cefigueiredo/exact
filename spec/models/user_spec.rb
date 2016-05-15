@@ -29,5 +29,13 @@ RSpec.describe User, type: :model do
         'is too short (minimum is 8 characters)'
       )
     end
+
+    it "pass if given password is not 'password'" do
+      user.authenticate?('password')
+
+      expect(user.errors[:password]).to include(
+        'the term is not permitted'
+      )
+    end
   end
 end

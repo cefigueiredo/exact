@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
     validate
     validates_length_of :password, minimum: 8, allow_blank: false
+    errors[:password] = 'the term is not permitted' if password == 'password'
 
     errors.empty?
   end
