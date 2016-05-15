@@ -3,7 +3,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:email] = params[:email] if params[:email] && params[:password]
+    @user = User.find_or_initialize_by(email: params[:email])
+
+    if @user.authenticate?(params[:password])
+      redirect_to users_path, notice: 'Logged in!'
+    else
+      flash.now.alert = "It was not possible to log in. Solve errors and try again."
+      render :new
+    end
   end
 
   def destroy
