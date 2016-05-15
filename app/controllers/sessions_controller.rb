@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
     @user = User.find_or_initialize_by(email: params[:email])
 
     if @user.authenticate?(params[:password])
+      session[:user_id] = @user.save.id
+
       redirect_to users_path, notice: 'Logged in!'
     else
       flash.now.alert = "It was not possible to log in. Solve errors and try again."
