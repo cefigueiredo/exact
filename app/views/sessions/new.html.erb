@@ -1,22 +1,25 @@
 <div class="login">
   <h1>Login</h1>
-  <% if flash[:alert] %>
-    <div class="flash flash-alert">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
 
-  <%= form_tag sessions_path do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email %>
-    </div>
-    <div class="field">
-      <%= label_tag :password %>
-      <%= text_field_tag :password %>
-    </div>
-    <div class="actions">
-      <%= submit_tag "Log In" %>
-    </div>
-  <% end %>
+  <div class="form">
+    <%= form_tag sessions_path do %>
+      <% if flash[:alert] %>
+        <div class="flash flash-alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+      </div>
+      <div class="field">
+        <%= label_tag :password %>
+        <%= text_field_tag :password %>
+      </div>
+      <div class="actions">
+        <%= submit_tag "Log In" %>
+      </div>
+    <% end %>
+
+  </div>
 </div>
