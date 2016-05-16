@@ -14,25 +14,76 @@
  *= require_self
  */
 
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
 .login {
   position: absolute;
   margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 400px;
   height: 200px;
   border-radius: 3px;
+  right: 0;
+  left: 0;
 
   .form {
     padding: 10px;
     border-radius: 3px;
     border: 1px solid #ccc;
+    position: relative;
+
+    .actions {
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 
-  label {
-    display: block;
+
+  .field {
+    label {
+      display: block;
+    }
+
+    input {
+      width: 100%
+    }
   }
+
+  @media screen and (min-width: 401px) {
+    top: 0;
+    bottom: 0;
+    max-width: 400px;
+  }
+
+  @media all and (max-width: 400px) {
+    padding: 0px 5px;
+    width: 100%;
+  }
+}
+
+.toolbar {
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  top: 0px;
+  right: 0px;
+  background: #ccc;
+
+  ul {
+    margin: 0px;
+    padding: 10px;
+    float: right;
+  }
+  li {
+    display: inline-block;
+  }
+}
+
+body {
+  padding-top: 40px;
 }
 
