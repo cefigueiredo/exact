@@ -40,8 +40,20 @@ html {
       display: flex;
       flex-direction: row-reverse;
     }
-  }
 
+    .errors {
+      color: red;
+
+      ul {
+        margin: 0px;
+        padding: 5px 5px;
+      }
+
+      li {
+        display: inline-block
+      }
+    }
+  }
 
   .field {
     label {

@@ -4,17 +4,38 @@
   <div class="form">
     <%= form_tag sessions_path do %>
       <% if flash[:alert] %>
-        <div class="flash flash-alert">
+        <h5 class="errors">
           <%= flash[:alert] %>
-        </div>
+        </h5>
       <% end %>
+
       <div class="field">
         <%= label_tag :email %>
-        <%= text_field_tag :email %>
+        <%= text_field_tag :email, @user.email %>
+
+        <% if @user.errors[:email].present? %>
+          <div class="errors">
+            <ul>
+            <% @user.errors[:email].each do |message| %>
+              <li>Email <%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
       </div>
       <div class="field">
         <%= label_tag :password %>
-        <%= text_field_tag :password %>
+        <%= text_field_tag :password, @user.password %>
+
+        <% if @user.errors[:password].present? %>
+          <div class="errors">
+            <ul>
+              <% @user.errors[:password].each do |message| %>
+                <li>Password <%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       </div>
       <div class="actions">
         <%= submit_tag "Log In" %>
